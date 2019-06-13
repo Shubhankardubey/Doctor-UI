@@ -629,20 +629,29 @@
 	        umsg = $.trim(umsg);
 
 	        if (uname != '' && uemail != '' && umsg != '') {
-	            var values = 	"uname=" + uname + 
-	            				"&uemail=" + uemail + 
-	            				"&unumber=" + unumber + 
-	            				"&udate=" + udate + 
-	            				"&udepartment=" + udepartment + 
-	            				"&udoctor=" + udoctor + 
-								"&umsg=" + umsg;
+	            // var values = 	"uname=" + uname + 
+	            // 				"&uemail=" + uemail + 
+	            // 				"&unumber=" + unumber + 
+	            // 				"&udate=" + udate + 
+	            // 				"&udepartment=" + udepartment + 
+	            // 				"&udoctor=" + udoctor + 
+				// 				"&umsg=" + umsg;
+				var values = {
+					Name: uname,
+					Email: uemail,
+					Number: unumber,
+					Date: udate,
+					Department: udepartment,
+					Doctor: udate,
+					Message: umsg
+				}
 								console.log(values)
 	            // $.ajax({
 	            //     type: "POST",
-	            //     url: "assets/php/appointment.php",
+	            //     url: "http://localhost:1234/products/create",
 	            //     data: values,
 	            //     success: function() {
-	            //         $('#uname').val('');
+				// 		$('#uname').val('');
 	            //         $('#uemail').val('');
 	            //         $('#unumber').val('');
 	            //         $('#udepartment').val('');
@@ -654,7 +663,18 @@
 	            //             $('#tm-alert1').fadeOut('slow');
 	            //         }, 4000);
 	            //     }
-	            // });
+				// });
+				$('#uname').val('');
+	                    $('#uemail').val('');
+	                    $('#unumber').val('');
+	                    $('#udepartment').val('');
+	                    $('#udoctor').val('');
+	                    $('#umsg').val('');
+
+	                    $('#tm-alert1').fadeIn().html('<div class="alert alert-success"><strong>Success!</strong> Appointment has been sent successfully.</div>');
+	                    setTimeout(function() {
+	                        $('#tm-alert1').fadeOut('slow');
+	                    }, 4000);
 	        } else {
 				$('#tm-alert1').fadeIn().html('<div class="alert alert-danger"><strong>Warning!</strong> All fields are required.</div>');
 	        }
