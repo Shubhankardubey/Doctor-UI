@@ -2,35 +2,6 @@
 
 	"use strict";
 
-	/*
-	|--------------------------------------------------------------------------
-	| Template Name: Trustlife
-	| Author: ThemeMarch
-	| Developer: Tamjid Bin Murtoza
-	| Version: 1.0.0
-	|--------------------------------------------------------------------------
-	|--------------------------------------------------------------------------
-	| TABLE OF CONTENTS:
-	|--------------------------------------------------------------------------
-	|
-	| 1. Scripts initialization
-	| 2. Preloader
-	| 3. Primary Menu
-	| 4. Scroll Function
-	| 5. Section Active and Scrolling Animation
-	| 6. Accordian
-	| 7. Tab
-	| 8. Custom Select 
-	| 9. Scroll Up
-	| 10. Owl Carousel
-	| 11. Portfolio
-	| 12. Magnific Popup
-	| 13. Ajax Contact Form And Appointment
-	| 14. Mailchimp js
-	| 15. Google Map
-	|
-	*/
-
 	/*--------------------------------------------------------------
 		1. Scripts initialization
 	--------------------------------------------------------------*/
@@ -546,6 +517,7 @@
 	/*--------------------------------------------------------------
 		14. Ajax Contact Form And Appointment
 	--------------------------------------------------------------*/
+
 	// Contact Form
 	function contactForm() {
 
@@ -558,10 +530,6 @@
 	        var msg = $('#msg').val();
 			var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 			
-			if (!regex.test(email)) {
-				$('#tm-alert').fadeIn().html('<div class="alert alert-danger"><strong>Warning!</strong> Please Enter Valid Email.</div>');
-				return false;
-			}
 
 	        name = $.trim(name);
 	        subject = $.trim(subject);
@@ -614,11 +582,6 @@
 	        var udoctor = $('#udoctor').val();
 	        var umsg = $('#umsg').val();
 			var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-			
-			if (!regex.test(uemail)) {
-				$('#tm-alert1').fadeIn().html('<div class="alert alert-danger"><strong>Warning!</strong> Please Enter Valid Email.</div>');
-				return false;
-			}
 
 	        uname = $.trim(uname);
 	        uemail = $.trim(uemail);
@@ -628,15 +591,8 @@
 	        udoctor = $.trim(udoctor);
 	        umsg = $.trim(umsg);
 
-	        if (uname != '' && uemail != '' && umsg != '') {
-	            // var values = 	"uname=" + uname + 
-	            // 				"&uemail=" + uemail + 
-	            // 				"&unumber=" + unumber + 
-	            // 				"&udate=" + udate + 
-	            // 				"&udepartment=" + udepartment + 
-	            // 				"&udoctor=" + udoctor + 
-				// 				"&umsg=" + umsg;
-				var values = {
+	        if (uname != '' && unumber != '' && umsg != '') {
+	            var values = {
 					Name: uname,
 					Email: uemail,
 					Number: unumber,
@@ -645,25 +601,24 @@
 					Doctor: udate,
 					Message: umsg
 				}
-								console.log(values)
-	            // $.ajax({
-	            //     type: "POST",
-	            //     url: "http://localhost:1234/products/create",
-	            //     data: values,
-	            //     success: function() {
-				// 		$('#uname').val('');
-	            //         $('#uemail').val('');
-	            //         $('#unumber').val('');
-	            //         $('#udepartment').val('');
-	            //         $('#udoctor').val('');
-	            //         $('#umsg').val('');
+	            $.ajax({
+	                type: "POST",
+	                url: "https://bewgle123.herokuapp.com/products/create",
+	                data: values,
+	                success: function() {
+						$('#uname').val('');
+	                    $('#uemail').val('');
+	                    $('#unumber').val('');
+	                    $('#udepartment').val('');
+	                    $('#udoctor').val('');
+	                    $('#umsg').val('');
 
-	            //         $('#tm-alert1').fadeIn().html('<div class="alert alert-success"><strong>Success!</strong> Appointment has been sent successfully.</div>');
-	            //         setTimeout(function() {
-	            //             $('#tm-alert1').fadeOut('slow');
-	            //         }, 4000);
-	            //     }
-				// });
+	                    $('#tm-alert1').fadeIn().html('<div class="alert alert-success"><strong>Success!</strong> Appointment has been sent successfully.</div>');
+	                    setTimeout(function() {
+	                        $('#tm-alert1').fadeOut('slow');
+	                    }, 4000);
+	                }
+				});
 				$('#uname').val('');
 	                    $('#uemail').val('');
 	                    $('#unumber').val('');
